@@ -1,4 +1,4 @@
-(defproject net.unit8/tower-cljs "0.1.0-SNAPSHOT"
+(defproject net.unit8/tower-cljs "0.1.0"
   :description "FIXME: write this!"
   :url "http://github.com/kawasima/tower-cljs"
   :dependencies [ [org.clojure/clojure "1.5.1"]
