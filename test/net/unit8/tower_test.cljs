@@ -14,7 +14,7 @@
           :foo_comment "Hello translator, please do x"
           :bar { :baz ":en :example.bar/baz text"}
           :greeting "Hello %s, how are you?"}
-        :missing "<Missing translation: [%1$s %2$s %3$s]>"}
+        :missing "<Missing translation: [%s %s %s]>"}
       :en-US
       { :example { :foo ":en-US :example/foo text" }}}
     })
@@ -25,7 +25,9 @@
   (testing "fallback"
     (is (= (tower/t :en-US my-tconfig :example.bar/baz) ":en :example.bar/baz text")))
   (testing "Nest"
-    (is (= (tower/t :en my-tconfig :example.bar/baz) ":en :example.bar/baz text"))))
+    (is (= (tower/t :en my-tconfig :example.bar/baz) ":en :example.bar/baz text")))
+  (testing "Missing"
+    (is (= (tower/t :en my-tconfig :example.bar/hoge) "&lt;Missing translation: [:en nil [:example.bar/hoge]]&gt;"))))
 
 (def remote-tconfig
   { :dev-mode? true

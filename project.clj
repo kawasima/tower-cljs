@@ -1,13 +1,18 @@
-(defproject net.unit8/tower-cljs "0.1.0"
-  :description "FIXME: write this!"
+(defproject net.unit8/tower-cljs "0.1.1-SNAPSHOT"
+  :description "Clojurescript i18n & L10n library, compatible with https://github.com/ptaoussanis/tower/"
   :url "http://github.com/kawasima/tower-cljs"
   :dependencies [ [org.clojure/clojure "1.5.1"]
                   [org.clojure/clojurescript "0.0-1896"
                     :exclusions [org.apache.ant/ant]]
                   [com.cemerick/clojurescript.test "0.0.4"]]
-  :plugins [ [lein-cljsbuild "0.3.3"] ]
+  :plugins [ [lein-cljsbuild "0.3.4"]
+             [lein-ring "0.8.7"]]
   :cljsbuild
-  { :builds
+  {
+    :repl-listen-port 9000
+    :repl-launch-commands
+    {"firefox" ["firefox" "-jconsole" "http://localhost:9000/repl"]}
+    :builds
     {
       :dev
       { :source-paths ["src"]
@@ -31,3 +36,4 @@
           :pretty-print true }}}
     :test-commands
     { "unit" [ "runners/phantomjs.js" "target/cljs/testable.js"]}})
+

@@ -2,13 +2,15 @@
   (:require
     [clojure.string :as str]
     [net.unit8.tower.utils :as utils]
-    [clojure.browser.net :as net]))
+    [clojure.browser.net :as net]
+    [goog.string :as gstring]
+    [goog.string.format]))
 
 (def locale-key "Returns locale keyword for given Locale object or locale keyword."
   (memoize #(keyword (str/replace (name %) "_" "-"))))
 
 (defn fmt-str "Like clojure.core/format but takes a locale."
-  ^String [loc fmt & args] (apply goog.string/format fmt args))
+  ^String [loc fmt & args] (apply gstring/format fmt args))
 
 
 (def dev-mode?       "Global fallback dev-mode?." (atom true))
